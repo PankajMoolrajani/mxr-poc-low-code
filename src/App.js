@@ -6,22 +6,27 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ToDoApp from "./configs/ToDoApp";
 import ToDoBoard from "./configs/ToDoBoard.json";
+import tasks from "./data/tasks.json";
 
 class App extends Component {
   _renderList(uiConfig, data) {
     console.log("_renderList");
     console.log(uiConfig);
-    let items = [];
+    console.log(data);
+    let listItems = [];
     // uiConfig.data.map((item) => {
     //   items.push(<Box>{item}</Box>);
     // });
-    uiConfig.itemUiConfig.children.map((item) => {
-      items.push(this._renderChild(item, data));
+    data.map((dataItem) => {
+      uiConfig.itemUiConfig.children.map((uiItem) => {
+        listItems.push(this._renderChild(uiItem, data));
+      });
     });
+
     return (
       <Box>
         <Box>List</Box>
-        <Box>{items}</Box>
+        <Box>{listItems}</Box>
       </Box>
     );
   }
@@ -45,7 +50,7 @@ class App extends Component {
       case "button":
         renderedElement = <Button> {uiConfig.label} </Button>;
         break;
-      case "list1":
+      case "list":
         renderedElement = this._renderList(uiConfig, data);
         break;
       default:
@@ -88,11 +93,10 @@ class App extends Component {
   }
 
   render() {
-    let data = {};
+    let data = tasks.tasks;
     return (
       <Box style={{ width: "100%", textAlign: "center" }}>
-        {/* {this._renderContainer(ToDoApp, data)} */}
-        Hello
+        {this._renderContainer(ToDoApp, data)}
       </Box>
     );
   }
