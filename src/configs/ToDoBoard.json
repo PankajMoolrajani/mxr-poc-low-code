@@ -1,0 +1,38 @@
+{
+  "type": "container",
+  "style": {
+    "display": "flex",
+    "flexDirection": "column",
+    "alignitems": "center",
+    "justifyContent": "center",
+    "backgroundColor": "blue"
+  },
+  "children": [
+    {
+      "name": "input-username",
+      "type": "text",
+      "label": "username"
+    },
+    {
+      "name": "input-password",
+      "type": "password",
+      "label": "password"
+    },
+    {
+      "name": "action-button",
+      "type": "button",
+      "label": "login"
+    },
+    {
+      "name": "forgot-pass-card",
+      "type": "container",
+      "children": [
+        {
+          "name": "action-button",
+          "type": "button",
+          "label": "Forgot Password"
+        }
+      ]
+    }
+  ]
+}

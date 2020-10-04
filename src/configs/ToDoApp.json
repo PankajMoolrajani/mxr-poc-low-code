@@ -1,0 +1,97 @@
+{
+  "type": "container",
+  "style": {
+    "display": "flex",
+    "flexDirection": "column",
+    "color": "white",
+    "backgroundColor": "blue",
+    "height": "500px"
+  },
+  "children": [
+    {
+      "name": "header",
+      "type": "container",
+      "style": {
+        "display": "flex",
+        "alignItems": "center",
+        "backgroundColor": "red"
+      },
+      "children": [
+        {
+          "name": "text",
+          "type": "text",
+          "label": "To Do",
+          "style": {
+            "flex": 1,
+            "fontSize": "30",
+            "textAlign": "left",
+            "marginLeft": 20
+          }
+        },
+        {
+          "name": "button",
+          "type": "button",
+          "label": "Logout",
+          "style": { "flex": 1, "textAlign": "right" }
+        }
+      ]
+    },
+    {
+      "name": "body",
+      "type": "container",
+      "style": { "backgroundColor": "lightgrey" },
+      "children": [
+        {
+          "name": "listpoc",
+          "type": "list",
+          "itemUiConfig": {
+            "type": "container",
+            "style": {
+              "display": "flex",
+              "backgroundColor": "green"
+            },
+            "children": [
+              {
+                "name": "title",
+                "type": "container",
+                "style": {
+                  "display": "flex",
+                  "flexDirection": "row"
+                },
+                "children": [
+                  {
+                    "name": "taskId",
+                    "type": "text",
+                    "label": "Task ID"
+                  },
+                  {
+                    "name": "taskId",
+                    "type": "text",
+                    "label": "Task Title"
+                  }
+                ]
+              },
+              {
+                "name": "assignee",
+                "type": "text",
+                "label": "Assignee"
+              }
+            ]
+          },
+          "data": ["hello", "ji"]
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "label": "Body",
+          "style": {}
+        },
+        {
+          "name": "input-username",
+          "type": "text",
+          "label": "username"
+        }
+      ]
+    }
+  ]
+}
