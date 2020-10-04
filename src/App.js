@@ -8,7 +8,7 @@ import ToDoApp from "./configs/ToDoApp";
 import ToDoBoard from "./configs/ToDoBoard.json";
 
 class App extends Component {
-  _renderList(uiConfig) {
+  _renderList(uiConfig, data) {
     console.log("_renderList");
     console.log(uiConfig);
     let items = [];
@@ -16,7 +16,7 @@ class App extends Component {
     //   items.push(<Box>{item}</Box>);
     // });
     uiConfig.itemUiConfig.children.map((item) => {
-      items.push(this._renderChild(item));
+      items.push(this._renderChild(item, data));
     });
     return (
       <Box>
@@ -25,7 +25,8 @@ class App extends Component {
       </Box>
     );
   }
-  _renderElement(uiConfig) {
+
+  _renderElement(uiConfig, data) {
     let renderedElement = null;
     switch (uiConfig.type) {
       case "text":
@@ -44,8 +45,8 @@ class App extends Component {
       case "button":
         renderedElement = <Button> {uiConfig.label} </Button>;
         break;
-      case "list":
-        renderedElement = this._renderList(uiConfig);
+      case "list1":
+        renderedElement = this._renderList(uiConfig, data);
         break;
       default:
         return null;
@@ -57,12 +58,12 @@ class App extends Component {
     );
   }
 
-  _renderChild(uiConfig) {
+  _renderChild(uiConfig, data) {
     let children = [];
     if (uiConfig.type === "container") {
-      children.push(this._renderContainer(uiConfig));
+      children.push(this._renderContainer(uiConfig, data));
     } else {
-      children.push(this._renderElement(uiConfig));
+      children.push(this._renderElement(uiConfig, data));
     }
     return (
       <Box key={Math.random()} style={{ flex: 1 }}>
@@ -71,11 +72,11 @@ class App extends Component {
     );
   }
 
-  _renderContainer(uiConfig) {
+  _renderContainer(uiConfig, data) {
     let children = [];
     if (uiConfig.children) {
       uiConfig.children.map((item) => {
-        children.push(this._renderChild(item));
+        children.push(this._renderChild(item, data));
         return null;
       });
     }
@@ -87,9 +88,11 @@ class App extends Component {
   }
 
   render() {
+    let data = {};
     return (
       <Box style={{ width: "100%", textAlign: "center" }}>
-        {this._renderContainer(ToDoApp)}
+        {/* {this._renderContainer(ToDoApp, data)} */}
+        Hello
       </Box>
     );
   }
