@@ -5,7 +5,7 @@
     "flexDirection": "column",
     "color": "white",
     "backgroundColor": "blue",
-    "height": "500px"
+    "height": "900px"
   },
   "children": [
     {
@@ -52,29 +52,37 @@
             },
             "children": [
               {
-                "name": "title",
+                "name": "task",
                 "type": "container",
                 "style": {
                   "display": "flex",
-                  "flexDirection": "row"
+                  "flexDirection": "row",
+                  "margin": 10
                 },
                 "children": [
                   {
                     "name": "taskId",
-                    "type": "text",
-                    "label": "Task ID"
+                    "type": "text1",
+                    "label": "id",
+                    "style": {
+                      "flex": 1
+                    }
                   },
                   {
-                    "name": "taskId",
-                    "type": "text",
-                    "label": "Task Title"
+                    "name": "title",
+                    "type": "text1",
+                    "label": "name",
+                    "style": {
+                      "flex": 17,
+                      "textAlign": "left"
+                    }
                   }
                 ]
               },
               {
                 "name": "assignee",
-                "type": "text",
-                "label": "Assignee"
+                "type": "text1",
+                "label": "assignee"
               }
             ]
           },

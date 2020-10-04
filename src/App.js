@@ -11,16 +11,18 @@ import tasks from "./data/tasks.json";
 class App extends Component {
   _renderList(uiConfig, data) {
     console.log("_renderList");
-    console.log(uiConfig);
-    console.log(data);
+    // console.log(uiConfig);
+    // console.log(data);
     let listItems = [];
     // uiConfig.data.map((item) => {
     //   items.push(<Box>{item}</Box>);
     // });
     data.map((dataItem) => {
       uiConfig.itemUiConfig.children.map((uiItem) => {
-        listItems.push(this._renderChild(uiItem, data));
+        listItems.push(this._renderChild(uiItem, dataItem));
+        return null
       });
+      return null
     });
 
     return (
@@ -32,11 +34,18 @@ class App extends Component {
   }
 
   _renderElement(uiConfig, data) {
+    let label = data[uiConfig.label]
     let renderedElement = null;
     switch (uiConfig.type) {
       case "text":
         renderedElement = uiConfig.label;
         break;
+      case "text1":
+          console.log(uiConfig);
+          console.log(data);
+          renderedElement = label;
+          break;
+    console.log(data);
       case "textfield":
         renderedElement = (
           <TextField label={uiConfig.label} placeholder={uiConfig.label} />
