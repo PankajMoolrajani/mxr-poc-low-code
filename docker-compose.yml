@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mxr-poc-low-code:
+    build: .
+    image: mxr-poc-low-code
+    container_name: mxr-poc-low-code
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+    command: /bin/sleep 216000

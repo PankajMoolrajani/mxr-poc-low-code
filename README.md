@@ -1,2 +1,2 @@
-# mxr-poc-low-code
+# mxr-proximity-demo-webapp
 Created with CodeSandbox

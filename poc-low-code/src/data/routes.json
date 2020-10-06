@@ -1,0 +1,14 @@
+{
+  "routes": [
+    {
+      "id": 1,
+      "name": "ToDo App",
+      "route": "/mxr/to-do"
+    },
+    {
+      "id": 1,
+      "name": "ToDo App",
+      "route": "/mxr/to-do"
+    }
+  ]
+}
