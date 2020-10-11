@@ -75,7 +75,8 @@
                 {
                   "name": "assignee",
                   "type": "text",
-                  "label": "Assignee"
+                  "label": "Assignee",
+                  "isStateFull": true
                 }
               ]
             },
@@ -88,9 +89,10 @@
             "style": {}
           },
           {
-            "name": "input-username",
-            "type": "text",
-            "label": "username"
+            "name": "inputUsername",
+            "type": "textfield",
+            "label": "User Name",
+            "isStateFull": true
           }
         ]
       }
