@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Child from './Child'
-import store from '../stores/ToDoApp.store'
+import store from '../stores/Store'
 
 
 class Element extends Component {
@@ -53,15 +53,19 @@ class Element extends Component {
         renderedElement = label
         break
       case 'textfield':
-        let stateObject = {}
+        let stateObject = {} 
+        console.log(uiConfig)
         if (uiConfig.isStateFull) {
           stateObject.value = store[uiConfig.name]
             ? store[uiConfig.name]
             : ''
           stateObject.onChange = (e) => {
+            console.log(uiConfig.name, JSON.stringify(store))
+            console.log('Change!')
             store[uiConfig.name]=e.target.value
           }
         }
+        console.log(stateObject)
         renderedElement = (
           <TextField
             label={uiConfig.label}
