@@ -7,11 +7,11 @@ import Child from "./Child"
 
 
 class Element extends Component {
-  _renderList(uiConfig, data) {
+  _renderList(uiConfig, data, store) {
     let listItems = [];
     data.map((dataItem) => {
       uiConfig.itemUiConfig.children.map((uiItem) => {
-        listItems.push(<Child uiConfig={uiItem} data={dataItem} />);
+        listItems.push(<Child key={Math.random()} uiConfig={uiItem} data={dataItem} store={store} />);
         return null
       });
       return null
@@ -22,7 +22,7 @@ class Element extends Component {
   }
 
 
-  _renderElement(uiConfig, data) {
+  _renderElement(uiConfig, data, store) {
     let label = data[uiConfig.label]
     let renderedElement = null;
     switch (uiConfig.type) {
@@ -34,7 +34,11 @@ class Element extends Component {
           break;
       case "textfield":
         renderedElement = (
-          <TextField label={uiConfig.label} placeholder={uiConfig.label} />
+          <TextField 
+            label={uiConfig.label} 
+            placeholder={uiConfig.label} 
+            onChange={(e)=>store.setObject(uiConfig.name, e.target.value)}
+          />
         );
         break;
       case "password":
@@ -43,10 +47,11 @@ class Element extends Component {
         );
         break;
       case "button":
-        renderedElement = <Button> {uiConfig.label} </Button>;
+        renderedElement = (
+          <Button> {uiConfig.label} </Button>);
         break;
       case "list":
-        renderedElement = this._renderList(uiConfig, data);
+        renderedElement = this._renderList(uiConfig, data, store);
         break;
       default:
         return null;
@@ -60,7 +65,7 @@ class Element extends Component {
 
 
   render() {
-    return (this._renderElement(this.props.uiConfig, this.props.data));
+    return (this._renderElement(this.props.uiConfig, this.props.data, this.props.store));
   }
 }
 

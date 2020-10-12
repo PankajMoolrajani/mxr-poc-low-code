@@ -4,11 +4,11 @@ import Box from "@material-ui/core/Box";
 import Child from "./Child"
 
 class Container extends Component {
-  _renderContainer(uiConfig, data) {
+  _renderContainer(uiConfig, data, store) {
     let children = [];
     if (uiConfig.children) {
       uiConfig.children.map((item) => {
-        children.push(<Child uiConfig={item} data={data} />);
+        children.push(<Child uiConfig={item} data={data} store={store}/>);
         return null;
       });
     }
@@ -21,7 +21,7 @@ class Container extends Component {
 
 
   render() {
-    return (this._renderContainer(this.props.uiConfig, this.props.data));
+    return (this._renderContainer(this.props.uiConfig, this.props.data, this.props.store));
   }
 }
 

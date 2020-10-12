@@ -43,6 +43,33 @@
       "style": { "backgroundColor": "lightgrey" },
       "children": [
         {
+          "name": "form",
+          "type": "container",
+          "style": {
+            "margin": 30
+          },
+          "children": [
+            {
+              "name": "name",
+              "type": "textfield",
+              "label": "Task"
+            },
+            {
+              "name": "details",
+              "type": "textfield",
+              "label": "Details"
+            },
+            {
+              "name": "createbutton",
+              "type": "button",
+              "label": "Create",
+              "style": {
+                "marginTop": 20
+              }
+            }
+          ]
+        },
+        {
           "name": "listpoc",
           "type": "list",
           "itemUiConfig": {

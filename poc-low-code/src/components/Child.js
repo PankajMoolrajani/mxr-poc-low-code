@@ -6,12 +6,12 @@ import Container from "./Container"
 
 
 class Child extends Component {
-  _renderChild(uiConfig, data) {
+  _renderChild(uiConfig, data, store) {
     let children = [];
     if (uiConfig.type === "container") {
-      children.push(<Container uiConfig={uiConfig} data={data} />);
+      children.push(<Container uiConfig={uiConfig} data={data} store={store} />);
     } else {
-      children.push(<Element uiConfig={uiConfig} data={data} />);
+      children.push(<Element uiConfig={uiConfig} data={data} store={store} />);
     }
     return (
       <Box key={Math.random()} style={{ flex: 1 }}>
@@ -22,7 +22,7 @@ class Child extends Component {
 
 
   render() {
-    return (this._renderChild(this.props.uiConfig, this.props.data))
+    return (this._renderChild(this.props.uiConfig, this.props.data, this.props.store))
   }
 }
 
