@@ -6,24 +6,9 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Child from './Child'
 import store from '../stores/Store'
-
+import axios from 'axios'
 
 class Element extends Component {
-  componentDidMount() {
-    console.log('Element Loaded')
-  }
-
-
-  componentDidUpdate() {
-    console.log('Element updated')
-  }
-
-
-  componentWillUnmount() {
-    console.log('Element unmount')
-  }
-
-
   _renderList = (uiConfig, data) => {
     let listItems = []
     data.map((dataItem) => {
@@ -54,18 +39,14 @@ class Element extends Component {
         break
       case 'textfield':
         let stateObject = {} 
-        console.log(uiConfig)
         if (uiConfig.isStateFull) {
           stateObject.value = store[uiConfig.name]
             ? store[uiConfig.name]
             : ''
           stateObject.onChange = (e) => {
-            console.log(uiConfig.name, JSON.stringify(store))
-            console.log('Change!')
             store[uiConfig.name]=e.target.value
           }
         }
-        console.log(stateObject)
         renderedElement = (
           <TextField
             label={uiConfig.label}
@@ -82,7 +63,46 @@ class Element extends Component {
         )
         break
       case 'button':
-        renderedElement = <Button> {uiConfig.label} </Button>
+        console.log(uiConfig)
+        renderedElement = (
+          <Button onClick={async () => {
+            if(uiConfig.action.type === 'submit') {
+              let bindStates = {}
+              uiConfig.action.dataStateMap.forEach(dataState => {
+                for (const key in dataState) {
+                  bindStates[key] = store[dataState[key]]
+                }
+              })
+             
+              const data = {
+                [uiConfig.action.dataKey]: bindStates
+              }
+
+              const query = `
+                mutation($${uiConfig.action.dataKey}: ${uiConfig.action.dataKey}InputType) {
+                  ${uiConfig.action.queryOrMutationName}(${uiConfig.action.dataKey}: $${uiConfig.action.dataKey}) {
+                    id
+                  }
+                }
+              `
+              await axios.post(
+                uiConfig.action.url,
+                {
+                  query: query,
+                  variables: data
+                }, {
+                  headers: {
+                    'app_id' : 'node-red',
+                    'app_secret': 'automatestuff',
+                    'org_id': '5eecbacb59da85299c18c799'
+                  }
+                }
+              ) 
+            }
+          }}> 
+            {uiConfig.label} 
+          </Button>
+        )
         break
       case 'list':
         renderedElement = this._renderList(uiConfig, data)
